@@ -1,0 +1,36 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+    Clients
+{% endblock title %}
+
+{% block content %}
+    <div class="py-6 px-6">
+        <h1 class="mb-4 text-xl">Clients</h1>
+
+        <a href="{% url 'clients_add' %}"
+           class="inline-block py-4 px-6 bg-neutral-600 hover:bg-neutral-500 rounded text-white">Add Client</a>
+ 
+        {% if clients %}
+            <div class="mt-6 flex justify-between">
+                <p class="py-4 px-4 bg-orange-200 font-semibold w-full">Name</p>
+
+            </div>
+ 
+            {% for client in clients %}
+                <ul class="flex justify-between">
+                    <li class="py-2 px-2 w-full  {% cycle '' 'bg-gray-100' %} ">
+                        <a href="{% url 'clients_detail' client.id %}">{{ client.name }}</a>
+                    </li>
+                </ul>
+            {% endfor %}
+
+        {% else %}
+            <p class="mt-6 px-2">There are no leads in the database yet...</p>
+        {% endif %}
+
+ 
+ 
+    </div>
+
+{% endblock content %}
